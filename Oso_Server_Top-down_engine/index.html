@@ -1,0 +1,124 @@
+<!-- https://www.youtube.com/watch?v=hwxLxCCcKPs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Down Engine on Canvas</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #000000;
+        }
+    </style>
+    <div id="canvas">
+        <canvas id="l" width="700" height="700"></canvas>
+    </div>
+        <style>
+            #canvas{
+                position: relative;
+                /* display: block; */
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var ctx = document.getElementById('l').getContext('2d');
+                var x = 2;
+                ctx.fillStyle = 'yellowgreen';
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(160*x, 0);
+                ctx.lineTo(160*x, 150*x);
+                ctx.lineTo(320*x, 150*x);
+                ctx.lineTo(320*x, 300*x);
+                ctx.lineTo(0, 300*x);
+                ctx.closePath();
+                ctx.fill();
+
+                });
+        </script>
+
+    <!-- <div id="screen">
+        <style>
+            #screen{
+                position: relative;
+                border: 2px solid #FFFFFF;
+                margin: auto;
+                background-color: rgb(212, 255, 131);
+                width: 320px;
+                height: 300px;
+            }
+        </style>
+    </div> -->
+
+    <div id="sprite" >            
+        <img src="server.png" alt="server" width='20' height='40' >
+        <style>
+            #sprite{
+                position: absolute;
+                background-color: rgba(65, 65, 65, 0);
+                width: 20px;
+                height: 40px;
+                top: 8px;
+                left: 8px;
+            }
+        </style>
+    </div>
+
+    <script>
+
+    // alert("Alert");
+
+        var xpos = 8;
+        var ypos = 8;
+        // var gamewidth = 500;
+
+        document.onkeydown = function(e) {
+            switch (e.keyCode) {
+                case 37:
+                    moveLeft();
+                    break;
+                case 38:
+                    moveUp();
+                    break;
+                case 39:
+                    moveRight();
+                    break;
+                case 40:
+                    moveDown();
+                    break;
+            }
+        };
+
+        function moveLeft(){  
+            if (xpos>8){
+                xpos-=10;
+                document.getElementById("sprite").style.left = xpos + 'px';
+            }
+        };
+
+        function moveUp(){
+            if ((ypos>=18 && xpos<=310 && ypos<=580) || (xpos<=640 && ypos<=580 && ypos>=310)){
+                ypos-=10;
+                document.getElementById("sprite").style.top = ypos + 'px'
+            }
+        };
+
+        function moveRight(){    
+            if ((xpos<=300 && ypos<300) || (xpos<=620 && ypos<=580 && ypos>=300)){
+                xpos+=10;
+                document.getElementById("sprite").style.left = xpos + 'px'
+            }
+        };
+
+        function moveDown(){
+            if ((xpos<=320 && ypos<=260) || (xpos<=640 && ypos<=560 && ypos>=260)){
+                ypos+=10;
+                document.getElementById("sprite").style.top = ypos + 'px'
+            }
+        };
+
+    </script>
+</body>
+</html>
